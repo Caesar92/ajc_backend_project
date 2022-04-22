@@ -16,10 +16,12 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Categorie {
-    @Id
-    @GeneratedValue
+public class Stock {
+    @Id@GeneratedValue
     long id;
-    String name;
+
+    String taille;
+    int quantite;
+
 
 }
