@@ -14,10 +14,16 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping()
     public ResponseEntity <?> getAllUsers(){
         return ResponseEntity.ok().body(userRepository.findAll());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity <?> getUser(@PathVariable long id){
+        return ResponseEntity.ok().body(userRepository.findById(id));
+    }
+
     @PostMapping
     public ResponseEntity <?> createUser(@RequestBody User user){
         userRepository.save(user);
@@ -33,8 +39,5 @@ public class UserController {
         userRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
-    @GetMapping("/{id}")
-    public ResponseEntity <?> getUser(@PathVariable long id){
-        return ResponseEntity.ok().body(userRepository.findById(id));
-    }
+
 }
