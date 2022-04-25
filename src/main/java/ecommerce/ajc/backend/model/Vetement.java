@@ -23,14 +23,14 @@ public class Vetement {
     String intitulé;
     String photo;
     int price;
-    boolean sexe;
-    String images;
+    String sexe;
+
 
     @OneToMany
     List <Avis> avisList;
     @ManyToOne
     Categorie categorie;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     List<Stock> stockList;
 
 }

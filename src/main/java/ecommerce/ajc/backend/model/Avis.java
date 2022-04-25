@@ -19,6 +19,7 @@ public class Avis {
     @Id
     @GeneratedValue
     long id;
+
     String nomUser;
     String commentaire;
     int note;

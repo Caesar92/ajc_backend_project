@@ -39,6 +39,28 @@ public class VetementController {
     public ResponseEntity <?> getVetement(@PathVariable long id){
         return ResponseEntity.ok().body(vetementRepository.findById(id));
     }
+    @GetMapping("/filtre")
+    public ResponseEntity <?> getVetementByTaille(
+            @RequestParam(required = false) String[] taille,
+            @RequestParam(value = "min" , required = false) Integer min,
+            @RequestParam(required = false) Integer max,
+            @RequestParam(required = false) String[] sexe
 
+    ){
+        if(taille == null){
+            taille = new String[]{"S", "M", "L"};
+        }
+        if(min == null){
+            min = 0;
+        }
+        if(max == null){
+            max = 100000000;
+        }
+
+        if(sexe == null){
+            sexe = new String[]{"Homme", "Femme", "Unisexe"};
+        }
+        return ResponseEntity.ok().body(vetementRepository.getFilter(taille, min, max, sexe));
+    }
 
 }

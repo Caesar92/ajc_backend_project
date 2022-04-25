@@ -1,8 +1,10 @@
 package ecommerce.ajc.backend.rest;
 
-
 import ecommerce.ajc.backend.model.Stock;
+import ecommerce.ajc.backend.model.User;
 import ecommerce.ajc.backend.repository.StockRepository;
+import ecommerce.ajc.backend.repository.UserRepository;
+import ecommerce.ajc.backend.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 public class StockController {
     @Autowired
     StockRepository stockRepository;
+    @Autowired
+    StockService stockService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllStocks(){
@@ -37,5 +41,10 @@ public class StockController {
     @GetMapping("/{id}")
     public ResponseEntity <?> getStock(@PathVariable long id){
         return ResponseEntity.ok().body(stockRepository.findById(id));
+    }
+    @PutMapping("/stock/{id}")
+    public ResponseEntity<?> updateStockId(@PathVariable long id){
+        stockService.decreaseStock(id);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 }

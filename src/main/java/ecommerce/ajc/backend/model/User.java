@@ -32,10 +32,10 @@ public class User{
     @ManyToMany(fetch = FetchType.EAGER)
     List <Role> listRole;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    List<Vetement> vetementList;
+    @ManyToMany
+    List<Vetement> listVetement;
 
-    public User(String email, String password, String adresse, String codePostal, String ville,  String pays, String prenom, String nom, String dateDeNaissance, List<Role> listRole) {
+    public User(String email, String password, String adresse, String codePostal, String ville,  String pays, String prenom, String nom, String dateDeNaissance, List<Role> listRole, List<Vetement> listVetement) {
         this.email = email;
         this.password = password;
         this.adresse = adresse;
@@ -46,6 +46,7 @@ public class User{
         this.pays = pays;
         this.codePostal = codePostal;
         this.listRole = listRole;
+        this.listVetement = listVetement;
     }
 }
 
