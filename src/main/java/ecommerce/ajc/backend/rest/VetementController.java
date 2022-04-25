@@ -1,7 +1,9 @@
 package ecommerce.ajc.backend.rest;
 
+import ecommerce.ajc.backend.model.Avis;
 import ecommerce.ajc.backend.model.Vetement;
 import ecommerce.ajc.backend.repository.VetementRepository;
+import ecommerce.ajc.backend.service.VetementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,6 +17,9 @@ import java.awt.*;
 public class VetementController {
     @Autowired
     VetementRepository vetementRepository;
+
+    @Autowired
+    VetementService vetementService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity <?> getALLVetements(){
@@ -39,6 +44,13 @@ public class VetementController {
     public ResponseEntity <?> getVetement(@PathVariable long id){
         return ResponseEntity.ok().body(vetementRepository.findById(id));
     }
+
+    @PutMapping("/addAvis/{id}")
+    public ResponseEntity <?> addAvis(@PathVariable long id, @RequestBody Avis avis){
+        vetementService.addAvisOnVetement(id, avis);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+    }
+
     @GetMapping("/filtre")
     public ResponseEntity <?> getVetementByTaille(
             @RequestParam(required = false) String[] taille,

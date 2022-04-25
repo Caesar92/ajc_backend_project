@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,14 +14,15 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Vetement {
     @Id
     @GeneratedValue
     long id;
-
+    String intitulé;
     String marque;
     String couleur;
-    String intitulé;
+
     String photo;
     int price;
     String sexe;
