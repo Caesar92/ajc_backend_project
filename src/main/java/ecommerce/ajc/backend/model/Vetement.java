@@ -24,6 +24,8 @@ public class Vetement {
     String photo;
     int price;
     boolean sexe;
+    String images;
+
     @OneToMany
     List <Avis> avisList;
     @ManyToOne
