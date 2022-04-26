@@ -30,14 +30,13 @@ URL SIGNIN : http://localhost:8080/api/auth/signin
 ## Les routes
 ### Vetements
 ````
-Get all vetements : get:api/vetements
+Get all vetements with filters : get:api/vetements?taille=?&min=?&max=?&sexe=?
+=> taille = [S, M, L] et sexe = [Homme, Femme, Unisexe]
 Get vetement by id : get:api/vetements/:id
 Update vetement : put:api/vetements
 Post vetement : post:api/vetements
 Delete vetement : delete:api/vetements
-Add avis on vetements : put:api/vetements/addAvis/:id
-Filter : get:api/vetements/filtre?taille=?&min=?&max=?&sexe=?
-=> taille = [S, M, L] et sexe = [Homme, Femme, Unisexe]
+Add avis on vetements : put:api/vetements/avis/:id
 ````
 
 ### Users
@@ -47,10 +46,10 @@ Get vetement by id : get:api/users/:id
 Update vetement : put:api/users
 Post vetement : post:api/users
 Delete vetement : delete:api/users
-Ajouter un vetement au panier : put:api/users/addVetement?userId=?&vetementId=?
-Supprimer un vetement du panier : put:api/users/removeVetement?userId=?&vetementId=?
-Vider le panier : put:api/users/clearVetement?userId=?
-Payer le panier : put:api/users/paidVetement?userId=?
+Ajouter un vetement au panier : post:api/users/panier?userId=?&vetementId=?
+Supprimer un vetement du panier : delete:api/users/panier?userId=?&vetementId=?
+Vider le panier : put:api/users/panier?userId=?
+Payer le panier : put:api/users/transaction?userId=?
 -------------------------------------------------------------------------
 Authentification : post:api/auth/signin
 Création de compte : post:api/auth/signup
@@ -72,8 +71,9 @@ Get stock by id : get:api/stocks/:id
 Update stock : put:api/stocks
 Post stock : post:api/stocks
 Delete stock : delete:api/stocks/:id
-Diminuer le stock de 1 pour un vetement : delete:api/stocks/stock/:id
-Agmenter le stock de 1 : pris en compte dans les urls de users
+Diminuer le stock de 1 pour un vetement : put:api/stocks/less/:id
+Augmenter le stock de 1 pour un vetement : put:api/stocks/more/:id
+Augmenter le stock de 1 : pris en compte dans les urls de users
 ````
 
 ### Categories

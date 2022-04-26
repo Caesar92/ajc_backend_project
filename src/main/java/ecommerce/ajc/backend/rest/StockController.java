@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/stocks")
 public class StockController {
@@ -42,9 +43,16 @@ public class StockController {
     public ResponseEntity <?> getStock(@PathVariable long id){
         return ResponseEntity.ok().body(stockRepository.findById(id));
     }
-    @PutMapping("/stock/{id}")
-    public ResponseEntity<?> updateStockId(@PathVariable long id){
+
+    @PutMapping("/less/{id}")
+    public ResponseEntity<?> decreaseStockId(@PathVariable long id){
         stockService.decreaseStock(id);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+    }
+
+    @PutMapping("/more/{id}")
+    public ResponseEntity<?> increaseStockId(@PathVariable long id){
+        stockService.increaseStock(id);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 }

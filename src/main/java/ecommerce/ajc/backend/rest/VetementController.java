@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/vetements")
 public class VetementController {
@@ -41,7 +42,7 @@ public class VetementController {
         return ResponseEntity.ok().body(vetementRepository.findById(id));
     }
 
-    @PutMapping("/addAvis/{id}")
+    @PutMapping("/avis/{id}")
     public ResponseEntity <?> addAvis(@PathVariable long id, @RequestBody Avis avis){
         vetementService.addAvisOnVetement(id, avis);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
@@ -75,5 +76,4 @@ public class VetementController {
         }
         return ResponseEntity.ok().body(vetementRepository.getFilter(taille, min, max, sexe));
     }
-
 }

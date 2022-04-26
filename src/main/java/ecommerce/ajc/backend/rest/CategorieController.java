@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/categories")
 public class CategorieController {
