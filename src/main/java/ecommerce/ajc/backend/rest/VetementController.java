@@ -21,10 +21,6 @@ public class VetementController {
     @Autowired
     VetementService vetementService;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity <?> getALLVetements(){
-        return ResponseEntity.ok().body(vetementRepository.findAll());
-    }
     @PostMapping
     public ResponseEntity <?> creatVetement(@RequestBody Vetement vetement){
         vetementRepository.save(vetement);
@@ -51,8 +47,13 @@ public class VetementController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 
-    @GetMapping("/filtre")
-    public ResponseEntity <?> getVetementByTaille(
+    /*@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity <?> getALLVetements(){
+        return ResponseEntity.ok().body(vetementRepository.findAll());
+    }*/
+
+    @GetMapping()
+    public ResponseEntity <?> getVetementsWithFilter(
             @RequestParam(required = false) String[] taille,
             @RequestParam(value = "min" , required = false) Integer min,
             @RequestParam(required = false) Integer max,
